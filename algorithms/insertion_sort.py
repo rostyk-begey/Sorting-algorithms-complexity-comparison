@@ -7,7 +7,7 @@ class InsertionSort(SortStrategy):
         return 'Insertion Sort'
 
     def sort_get_count(self):
-        array = self.__array__
+        array = self._array
         compares = 0
         swaps = 0
         for i in range(1, len(array)):

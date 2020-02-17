@@ -38,5 +38,5 @@ class QuickSort(SortStrategy):
         return 'Quick Sort'
 
     def sort_get_count(self):
-        array = self.__array__
+        array = self._array
         return _quicksort(array, 0, len(array) - 1)

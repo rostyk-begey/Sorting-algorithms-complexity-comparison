@@ -7,7 +7,7 @@ class BubbleSort(SortStrategy):
         return 'Bubble Sort'
 
     def sort_get_count(self):
-        array = self.__array__
+        array = self._array
         n = len(array)
         compares = 0
         swaps = 0

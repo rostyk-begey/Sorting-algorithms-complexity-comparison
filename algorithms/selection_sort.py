@@ -7,7 +7,7 @@ class SelectionSort(SortStrategy):
         return 'Selection sort'
 
     def sort_get_count(self):
-        array = self.__array__
+        array = self._array
         compares = 0
         swaps = 0
         for index in range(len(array)):

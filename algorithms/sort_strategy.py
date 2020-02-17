@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 class SortStrategy(ABC):
     def __init__(self, array):
-        self.__array__ = array
+        self._array = array
 
     @staticmethod
     def get_name():

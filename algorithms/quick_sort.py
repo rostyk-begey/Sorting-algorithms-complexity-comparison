@@ -33,8 +33,7 @@ def _partition(lst, start, end):
 
 
 class QuickSort(SortStrategy):
-    @staticmethod
-    def get_name():
+    def __str__(self):
         return 'Quick Sort'
 
     def sort_get_count(self):

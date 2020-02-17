@@ -2,8 +2,7 @@ from .sort_strategy import SortStrategy
 
 
 class BubbleSort(SortStrategy):
-    @staticmethod
-    def get_name():
+    def __str__(self):
         return 'Bubble Sort'
 
     def sort_get_count(self):

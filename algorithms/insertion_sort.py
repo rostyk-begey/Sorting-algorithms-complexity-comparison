@@ -2,8 +2,7 @@ from .sort_strategy import SortStrategy
 
 
 class InsertionSort(SortStrategy):
-    @staticmethod
-    def get_name():
+    def __str__(self):
         return 'Insertion Sort'
 
     def sort_get_count(self):

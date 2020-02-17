@@ -23,7 +23,7 @@ class AlgorithmComparer:
         swaps = []
         for i in range(self._lists_per_interval):
             array = [x for x in self._generate_random_array(length)]
-            a, b = sort_algorithm(array).sort_get_count()
+            a, b = sort_algorithm.set_array(array).sort_get_count()
             compares.append(a)
             swaps.append(b)
         return compares, swaps
@@ -38,7 +38,7 @@ class AlgorithmComparer:
     def get_statistics(self):
         data = {}
         for algorithm in self._algorithms:
-            data[algorithm.get_name()] = self._get_statistics_on_interval(algorithm)
+            data[str(algorithm)] = self._get_statistics_on_interval(algorithm)
         return data
 
 
@@ -55,11 +55,11 @@ def draw_subplot(plt, title, x, y, nrow, ncol, ind):
 
 def draw():
     algorithms = [
-        BubbleSort,
-        SelectionSort,
-        InsertionSort,
-        QuickSort,
-        GnomeSort,
+        BubbleSort(),
+        SelectionSort(),
+        InsertionSort(),
+        QuickSort(),
+        GnomeSort(),
     ]
     comparer = AlgorithmComparer(algorithms)
     data = comparer.get_statistics()

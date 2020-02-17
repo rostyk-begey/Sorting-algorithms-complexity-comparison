@@ -2,8 +2,7 @@ from .sort_strategy import SortStrategy
 
 
 class SelectionSort(SortStrategy):
-    @staticmethod
-    def get_name():
+    def __str__(self):
         return 'Selection sort'
 
     def sort_get_count(self):
@@ -16,6 +15,7 @@ class SelectionSort(SortStrategy):
             for i in range(index + 1, len(array)):
                 compares += 1
                 if array[i] < array[min_index]:
+                    swaps += 1
                     min_index = i
             else:
                 compares += 1

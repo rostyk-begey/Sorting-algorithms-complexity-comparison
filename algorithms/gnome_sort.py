@@ -2,8 +2,7 @@ from .sort_strategy import SortStrategy
 
 
 class GnomeSort(SortStrategy):
-    @staticmethod
-    def get_name():
+    def __str__(self):
         return 'Gnome Sort'
 
     def sort_get_count(self):

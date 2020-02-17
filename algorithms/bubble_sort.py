@@ -9,10 +9,12 @@ class BubbleSort(SortStrategy):
     def sort_get_count(self):
         array = self.__array__
         n = len(array)
-        count = 0
+        compares = 0
+        swaps = 0
         for i in range(n):
             for j in range(n):
-                count += 1
+                compares += 1
                 if array[i] < array[j]:
+                    swaps += 1
                     array[i], array[j] = array[j], array[i]
-        return count
+        return compares, swaps

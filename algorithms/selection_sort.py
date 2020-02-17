@@ -8,14 +8,18 @@ class SelectionSort(SortStrategy):
 
     def sort_get_count(self):
         array = self.__array__
-        count = 0
+        compares = 0
+        swaps = 0
         for index in range(len(array)):
             min_index = index
             # Find the index'th smallest element
             for i in range(index + 1, len(array)):
-                count += 1
+                compares += 1
                 if array[i] < array[min_index]:
                     min_index = i
+            else:
+                compares += 1
             if min_index != index:  # swap the elements
+                swaps += 1
                 array[index], array[min_index] = array[min_index], array[index]
-        return count
+        return compares, swaps

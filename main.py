@@ -8,28 +8,38 @@ def avg(array):
     return sum(array) / len(array)
 
 
-def generate_random_array(length, interval=(0, 100)):
-    for i in range(length):
-        yield random.randrange(*interval)
+class AlgorithmComparer:
+    def __init__(self, algorithms, interval=(10, 400, 10), lists_per_interval=10):
+        self._algorithms = algorithms
+        self._interval = interval
+        self._lists_per_interval = lists_per_interval
 
+    def _generate_random_array(self, length, interval=(0, 100)):
+        for i in range(length):
+            yield random.randrange(*interval)
 
-def get_statistics_per_length(sort_algorithm, length, number=10):
-    compares = []
-    swaps = []
-    for i in range(number):
-        array = [x for x in generate_random_array(length)]
-        a, b = sort_algorithm(array).sort_get_count()
-        compares.append(a)
-        swaps.append(b)
-    return compares, swaps
+    def _get_statistics_per_length(self, sort_algorithm, length):
+        compares = []
+        swaps = []
+        for i in range(self._lists_per_interval):
+            array = [x for x in self._generate_random_array(length)]
+            a, b = sort_algorithm(array).sort_get_count()
+            compares.append(a)
+            swaps.append(b)
+        return compares, swaps
 
+    def _get_statistics_on_interval(self, algorithm):
+        statistics = {}
+        for length in range(*self._interval):
+            compares, swaps = self._get_statistics_per_length(algorithm, length)
+            statistics[length] = (avg(compares), avg(swaps))
+        return statistics
 
-def get_statistics_on_interval(algorithm, start=10, stop=100, step=10, arrays_per_length=10):
-    statistics = {}
-    for length in range(start, stop, step):
-        compares, swaps = get_statistics_per_length(algorithm, length, arrays_per_length)
-        statistics[length] = (avg(compares), avg(swaps))
-    return statistics
+    def get_statistics(self):
+        data = {}
+        for algorithm in self._algorithms:
+            data[algorithm.get_name()] = self._get_statistics_on_interval(algorithm)
+        return data
 
 
 def draw_subplot(plt, title, x, y, nrow, ncol, ind):
@@ -51,12 +61,12 @@ def draw():
         QuickSort,
         GnomeSort,
     ]
+    comparer = AlgorithmComparer(algorithms)
+    data = comparer.get_statistics()
     n = 1
-    col = len(algorithms)
+    col = len(data.keys())
     plt.figure(figsize=(10, 5 * col))
-    for algorithm in algorithms:
-        statistics = get_statistics_on_interval(algorithm, stop=400)
-        title = algorithm.get_name()
+    for title, statistics in data.items():
         x = list(statistics.keys())
         y = [x for x, y in statistics.values()]
         n = draw_subplot(plt, title, x, y, col, 2, n)

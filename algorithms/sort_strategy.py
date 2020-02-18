@@ -12,9 +12,9 @@ class SortStrategy(ABC):
     def __str__(self):
         return self.__class__.__name__
 
-    @staticmethod
-    def get_name():
-        return 'Sort Algorithm'
+    @abstractmethod
+    def get_default_compares(self, length):
+        pass
 
     @abstractmethod
     def sort_get_count(self):

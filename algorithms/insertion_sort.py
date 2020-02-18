@@ -5,6 +5,9 @@ class InsertionSort(SortStrategy):
     def __str__(self):
         return 'Insertion Sort'
 
+    def get_default_compares(self, length):
+        return pow(length, 2)
+
     def sort_get_count(self):
         array = self._array
         compares = 0

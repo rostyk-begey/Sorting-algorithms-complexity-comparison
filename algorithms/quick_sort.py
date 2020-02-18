@@ -1,4 +1,5 @@
 from .sort_strategy import SortStrategy
+from math import log2
 
 
 def _quicksort(lst, start, end):
@@ -35,6 +36,9 @@ def _partition(lst, start, end):
 class QuickSort(SortStrategy):
     def __str__(self):
         return 'Quick Sort'
+
+    def get_default_compares(self, length):
+        return length * log2(length)
 
     def sort_get_count(self):
         array = self._array

@@ -1,0 +1,3 @@
+from .random_array_factory import RandomArrayFactory
+from .reversed_array_factory import ReversedArrayFactory
+from .crossfade_array_factory import CrossfadeArrayFactory
